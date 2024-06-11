@@ -1,0 +1,24 @@
+﻿@page "{id:int}"
+@model EmployeeManager.Client.Pages.Employees.EmployeeDetailsModel
+@{
+    ViewData["Title"] = "Employee Details";
+}
+
+<h2>Employee Details</h2>
+
+@if (Model.Employee != null)
+{
+    <div>
+        <p><strong>ID:</strong> @Model.Employee.Id</p>
+        <p><strong>First Name:</strong> @Model.Employee.FirstName</p>
+        <p><strong>Last Name:</strong> @Model.Employee.LastName</p>
+        <p><strong>Department:</strong> @Model.Employee.DepartmentName</p>
+        <p><strong>Address:</strong> @Model.Employee.Street, @Model.Employee.City, @Model.Employee.State</p>
+    </div>
+}
+else
+{
+    <p>Employee not found.</p>
+}
+
+<a class="btn btn-secondary" asp-page="/Employees/Index">Back to Employees</a>

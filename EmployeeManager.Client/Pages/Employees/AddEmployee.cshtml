@@ -1,0 +1,39 @@
+﻿@page
+@model EmployeeManager.Client.Pages.Employees.AddEmployeeModel
+@{
+    ViewData["Title"] = "Add Employee";
+}
+
+<h2>Add Employee</h2>
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Employee.FirstName">First Name</label>
+        <input asp-for="Employee.FirstName" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Employee.LastName">Last Name</label>
+        <input asp-for="Employee.LastName" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Employee.DepartmentId">Department</label>
+        <select asp-for="Employee.DepartmentId" class="form-control" asp-items="Model.DepartmentList">
+            <option value="">-- Select Department --</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="Employee.Street">Street</label>
+        <input asp-for="Employee.Street" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Employee.City">City</label>
+        <input asp-for="Employee.City" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Employee.State">State</label>
+        <input asp-for="Employee.State" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+
+<a class="btn btn-secondary" asp-page="/Employees/Index">Back to Employees</a>

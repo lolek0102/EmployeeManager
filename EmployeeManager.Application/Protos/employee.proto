@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option csharp_namespace = "EmployeeManager.Application.gRPC";
+
+package employee;
+
+// The employee service definition.
+service EmployeeService {
+  // Sends a request to get employee info
+  rpc GetEmployeeInfo (EmployeeRequest) returns (EmployeeReply);
+}
+
+// The request message containing the employee's ID.
+message EmployeeRequest {
+  int32 id = 1;
+}
+
+// The response message containing the employee's details.
+message EmployeeReply {
+  int32 id = 1;
+  string firstName = 2;
+  string lastName = 3;
+  string department = 4;
+}

@@ -1,0 +1,30 @@
+﻿@page
+@model EmployeeManager.Client.Pages.gRPC.GetEmployeeViaGrpc
+@{
+    ViewData["Title"] = "gRPC Test";
+}
+
+<h2>gRPC Test</h2>
+
+<form method="post">
+    <div class="form-group">
+        <label for="employeeId">Employee ID:</label>
+        <input type="text" id="employeeId" name="employeeId" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Get Employee Info</button>
+</form>
+
+@if (Model.ErrorMessage != null)
+{
+    <div class="alert alert-danger">@Model.ErrorMessage</div>
+}
+else if (Model.EmployeeInfo != null)
+{
+    <h3>Employee Info</h3>
+    <p><strong>ID:</strong> @Model.EmployeeInfo.Id</p>
+    <p><strong>First Name:</strong> @Model.EmployeeInfo.FirstName</p>
+    <p><strong>Last Name:</strong> @Model.EmployeeInfo.LastName</p>
+    <p><strong>Department:</strong> @Model.EmployeeInfo.Department</p>
+}
+
+<a class="btn btn-secondary" asp-page="/Index">Back to Home</a>

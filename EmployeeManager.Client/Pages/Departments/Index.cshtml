@@ -1,0 +1,55 @@
+﻿@page
+@model EmployeeManager.Client.Pages.Departments.IndexModel
+@{
+    ViewData["Title"] = "Departments";
+}
+
+<h2>Departments</h2>
+
+@if (Model.Departments.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Department Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var department in Model.Departments)
+            {
+                <tr>
+                    <td>@department.Id</td>
+                    <td>@department.Name</td>
+                    <td>
+                        <a class="btn btn-info" asp-page="/Departments/DepartmentDetails" asp-route-id="@department.Id">View</a>
+                        @if (Model.IsAdmin)
+                        {
+                            <a class="btn btn-warning" asp-page="/Departments/EditDepartment" asp-route-id="@department.Id">Edit</a>
+                            @if (!department.Employees.Any())
+                            {
+                                <form method="post" style="display:inline" asp-page-handler="Delete" asp-route-id="@department.Id">
+                                    <button typI thine="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            }
+                            else
+                            {
+                                <span class="text-danger">Can't delete: contains employees</span>
+                            }
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No departments found.</p>
+}
+
+@if (Model.IsAdmin)
+{
+    <a class="btn btn-primary" asp-page="/Departments/AddDepartment">Add New Department</a>
+}

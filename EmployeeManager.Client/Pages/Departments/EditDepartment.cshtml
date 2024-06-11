@@ -1,0 +1,25 @@
+﻿@page "{id:int}"
+@model EmployeeManager.Client.Pages.Departments.EditDepartmentModel
+@{
+    ViewData["Title"] = "Edit Department";
+}
+
+<h2>Edit Department</h2>
+
+@if (Model.Department != null)
+{
+    <form method="post">
+        <input type="hidden" asp-for="Department.Id" />
+        <div class="form-group">
+            <label asp-for="Department.Name">Department Name</label>
+            <input asp-for="Department.Name" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+}
+else
+{
+    <p>Department not found.</p>
+}
+
+<a class="btn btn-secondary" asp-page="/Departments/Index">Back to Departments</a>

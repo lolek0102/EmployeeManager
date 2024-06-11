@@ -1,0 +1,35 @@
+﻿@page "{id:int}"
+@model EmployeeManager.Client.Pages.Departments.DepartmentDetailsModel
+@{
+    ViewData["Title"] = "Department Details";
+}
+
+<h2>Department Details</h2>
+
+@if (Model.Department != null)
+{
+    <div>
+        <p><strong>ID:</strong> @Model.Department.Id</p>
+        <p><strong>Department Name:</strong> @Model.Department.Name</p>
+        <h3>Employees</h3>
+        @if (Model.Department.Employees.Any())
+        {
+            <ul>
+                @foreach (var employee in Model.Department.Employees)
+                {
+                    <li>@employee.FirstName @employee.LastName</li>
+                }
+            </ul>
+        }
+        else
+        {
+            <p>No employees in this department.</p>
+        }
+    </div>
+}
+else
+{
+    <p>Department not found.</p>
+}
+
+<a class="btn btn-secondary" asp-page="/Departments/Index">Back to Departments</a>

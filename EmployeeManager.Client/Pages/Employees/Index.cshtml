@@ -1,0 +1,50 @@
+﻿@page
+@model EmployeeManager.Client.Pages.Employees.IndexModel
+@{
+    ViewData["Title"] = "Employees";
+}
+
+<h2>Employees</h2>
+
+@if (Model.Employees.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var employee in Model.Employees)
+            {
+                <tr>
+                    <td>@employee.Id</td>
+                    <td>@employee.FirstName</td>
+                    <td>@employee.LastName</td>
+                    <td>
+                        <a class="btn btn-info" asp-page="/Employees/EmployeeDetails" asp-route-id="@employee.Id">View</a>
+                        @if (Model.IsAdmin)
+                        {
+                            <a class="btn btn-warning" asp-page="/Employees/EditEmployee" asp-route-id="@employee.Id">Edit</a>
+                            <form method="post" style="display:inline" asp-page-handler="Delete" asp-route-id="@employee.Id">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No employees found.</p>
+}
+
+@if (Model.IsAdmin)
+{
+    <a class="btn btn-primary" asp-page="/Employees/AddEmployee">Add New Employee</a>
+}
